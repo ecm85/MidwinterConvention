@@ -23,36 +23,45 @@ namespace MidwinterConvention.CLI
             var allBggIds = allItems.Select(item => item.bgg_id).ToList();
             var allBggIdsParameter = string.Join(",", allBggIds);
             var allBggItems = GetBggInfo(allBggIdsParameter);
+            var gameInfos = allItems
+                .Select(item => new GameInfo
+                {
+                    MidwinterItem = item,
+                    BggItem = item.bgg_id == null ? null : allBggItems[(uint) item.bgg_id]
+                })
+                .ToList();
             Console.WriteLine("Free To Play Games");
             Console.WriteLine("--------------------------------------------------");
-            foreach (var item in allItems.Where(item => item.is_play_to_win == 1))
+            var freeToPlayItems = gameInfos
+                .Where(gameInfo => gameInfo.MidwinterItem.is_play_to_win == 1)
+                .OrderByDescending(gameInfo => gameInfo.AverageRating)
+                .ToList();
+            foreach (var freeToPlayItem in freeToPlayItems)
             {
-                var bggInfo = item.bgg_id == null ? null : allBggItems[(uint)item.bgg_id];
-                PrintGameInfo(bggInfo, item);
+                PrintGameInfo(freeToPlayItem);
             }
 
             Console.WriteLine();
             Console.WriteLine("Non-Free To Play Games");
             Console.WriteLine("--------------------------------------------------");
-            foreach (var item in allItems.Where(item => item.is_play_to_win != 1))
+            var nonFreeToPlayItems = gameInfos
+                .Except(freeToPlayItems)
+                .OrderByDescending(gameInfo => gameInfo.AverageRating);
+            foreach (var nonFreeToPlayItem in nonFreeToPlayItems)
             {
-                var bggInfo = item.bgg_id == null ? null : allBggItems[(uint)item.bgg_id];
-                PrintGameInfo(bggInfo, item);
+                PrintGameInfo(nonFreeToPlayItem);
             }
         }
 
-        private static void PrintGameInfo(BGG.itemsItem bggInfo, Item item)
+        private static void PrintGameInfo(GameInfo gameInfo)
         {
-            if (bggInfo == null)
+            if (gameInfo.AverageRating == null)
             {
-                Console.WriteLine(item.name + " - NO BGG ID!!!");
+                Console.WriteLine(gameInfo.MidwinterItem.name + " - NO BGG ID!!!");
             }
             else
             {
-                var indexOfStatistics = bggInfo.ItemsElementName.ToList().IndexOf(BGG.ItemsChoiceType.statistics);
-                var statistics = (BGG.itemsItemStatistics) bggInfo.Items[indexOfStatistics];
-                var averageRating = statistics.ratings.average;
-                Console.WriteLine(item.name + " - " + averageRating.value);
+                Console.WriteLine(gameInfo.MidwinterItem.name + " - " + gameInfo.AverageRating);
             }
         }
 
