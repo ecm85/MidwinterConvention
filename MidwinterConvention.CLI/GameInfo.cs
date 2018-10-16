@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 
 namespace MidwinterConvention.CLI
 {
     public class GameInfo
     {
         public BGG.itemsItem BggItem { get; set; }
-        public Item MidwinterItem { get; set; }
+        public Midwinter.Item MidwinterItem { get; set; }
 
         public decimal? AverageRating
         {
