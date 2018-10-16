@@ -14,50 +14,54 @@ namespace MidwinterConvention.CLI
     {
         static void Main(string[] args)
         {
-            var task = PrintStuff();
-            task.Wait();
-            //Console.WriteLine(allItems.Count);
-            //foreach (var resultItem in allItems.Where(item => item.is_play_to_win == 1))
-            //{
-            //    Console.WriteLine(resultItem.name);
-            //}
+            PrintStuff();
         }
 
-        private static async Task PrintStuff()
+        private static void PrintStuff()
         {
             var allItems = GetAllItems();
+            var allBggIds = allItems.Select(item => item.bgg_id).ToList();
+            var allBggIdsParameter = string.Join(",", allBggIds);
+            var allBggItems = GetBggInfo(allBggIdsParameter);
+            Console.WriteLine("Free To Play Games");
+            Console.WriteLine("--------------------------------------------------");
             foreach (var item in allItems.Where(item => item.is_play_to_win == 1))
             {
-                await Task.Delay(500);
-                if (item.bgg_id == null)
-                {
-                    Console.WriteLine(item.name + " - NO BGG ID!!!");
-                }
-                else
-                {
-                    try
-                    {
-                        var bggInfo = GetBggInfo(item.bgg_id);
-                        var indexOfStatistics = bggInfo.ItemsElementName.ToList().IndexOf(BGG.ItemsChoiceType.statistics);
-                        var statistics = (BGG.itemsItemStatistics) bggInfo.Items[indexOfStatistics];
-                        var averageRating = statistics.ratings.average;
-                        //var statistics = bggInfo.Items BGG.ItemsChoiceType.statistics)
-                        Console.WriteLine(item.name + " - " + averageRating.value);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(item.name + " - threw exception " + e.GetType());
-                    }
-                }
+                var bggInfo = item.bgg_id == null ? null : allBggItems[(uint)item.bgg_id];
+                PrintGameInfo(bggInfo, item);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Non-Free To Play Games");
+            Console.WriteLine("--------------------------------------------------");
+            foreach (var item in allItems.Where(item => item.is_play_to_win != 1))
+            {
+                var bggInfo = item.bgg_id == null ? null : allBggItems[(uint)item.bgg_id];
+                PrintGameInfo(bggInfo, item);
             }
         }
 
-        private static BGG.itemsItem GetBggInfo(int? bggId)
+        private static void PrintGameInfo(BGG.itemsItem bggInfo, Item item)
+        {
+            if (bggInfo == null)
+            {
+                Console.WriteLine(item.name + " - NO BGG ID!!!");
+            }
+            else
+            {
+                var indexOfStatistics = bggInfo.ItemsElementName.ToList().IndexOf(BGG.ItemsChoiceType.statistics);
+                var statistics = (BGG.itemsItemStatistics) bggInfo.Items[indexOfStatistics];
+                var averageRating = statistics.ratings.average;
+                Console.WriteLine(item.name + " - " + averageRating.value);
+            }
+        }
+
+        private static IDictionary<uint, BGG.itemsItem> GetBggInfo(string bggIdParameter)
         {
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
-                var uri = $"https://www.boardgamegeek.com/xmlapi2/thing?id={bggId}&stats=1";
+                var uri = $"https://www.boardgamegeek.com/xmlapi2/thing?id={bggIdParameter}&stats=1";
                 var response = client.GetAsync(uri).Result;
                 //var resultStream = response.Content?.ReadAsStreamAsync().Result;
                 var bytes = response.Content?.ReadAsByteArrayAsync().Result;
@@ -66,7 +70,7 @@ namespace MidwinterConvention.CLI
                 {
                     //return xml;
                     var items = (BGG.items) new XmlSerializer(typeof(BGG.items)).Deserialize(resultStream);
-                    return items.item;
+                    return items.item.ToDictionary(item => item.id);
                 }
             }
         }

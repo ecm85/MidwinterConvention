@@ -16,12 +16,13 @@ namespace MidwinterConvention.CLI
         public partial class items
         {
 
-            private itemsItem itemField;
+            private itemsItem[] itemField;
 
             private string termsofuseField;
 
             /// <remarks/>
-            public itemsItem item
+            [System.Xml.Serialization.XmlElementAttribute("item")]
+            public itemsItem[] item
             {
                 get
                 {
@@ -61,7 +62,7 @@ namespace MidwinterConvention.CLI
 
             private string typeField;
 
-            private string idField;
+            private uint idField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlElementAttribute("description", typeof(string))]
@@ -122,7 +123,7 @@ namespace MidwinterConvention.CLI
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public string id
+            public uint id
             {
                 get
                 {
@@ -144,9 +145,13 @@ namespace MidwinterConvention.CLI
 
             private string typeField;
 
-            private string idField;
+            private uint idField;
 
             private string valueField;
+
+            private bool inboundField;
+
+            private bool inboundFieldSpecified;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -164,7 +169,7 @@ namespace MidwinterConvention.CLI
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public string id
+            public uint id
             {
                 get
                 {
@@ -189,6 +194,34 @@ namespace MidwinterConvention.CLI
                     this.valueField = value;
                 }
             }
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute()]
+            public bool inbound
+            {
+                get
+                {
+                    return this.inboundField;
+                }
+                set
+                {
+                    this.inboundField = value;
+                }
+            }
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlIgnoreAttribute()]
+            public bool inboundSpecified
+            {
+                get
+                {
+                    return this.inboundFieldSpecified;
+                }
+                set
+                {
+                    this.inboundFieldSpecified = value;
+                }
+            }
         }
 
         /// <remarks/>
@@ -198,11 +231,11 @@ namespace MidwinterConvention.CLI
         public partial class itemsItemMaxplayers
         {
 
-            private int valueField;
+            private byte valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int value
+            public byte value
             {
                 get
                 {
@@ -222,11 +255,11 @@ namespace MidwinterConvention.CLI
         public partial class itemsItemMaxplaytime
         {
 
-            private int valueField;
+            private byte valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int value
+            public byte value
             {
                 get
                 {
@@ -246,11 +279,11 @@ namespace MidwinterConvention.CLI
         public partial class itemsItemMinage
         {
 
-            private int valueField;
+            private byte valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int value
+            public byte value
             {
                 get
                 {
@@ -270,11 +303,11 @@ namespace MidwinterConvention.CLI
         public partial class itemsItemMinplayers
         {
 
-            private int valueField;
+            private byte valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int value
+            public byte value
             {
                 get
                 {
@@ -294,11 +327,11 @@ namespace MidwinterConvention.CLI
         public partial class itemsItemMinplaytime
         {
 
-            private int valueField;
+            private byte valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int value
+            public byte value
             {
                 get
                 {
@@ -320,7 +353,7 @@ namespace MidwinterConvention.CLI
 
             private string typeField;
 
-            private int sortindexField;
+            private byte sortindexField;
 
             private string valueField;
 
@@ -340,7 +373,7 @@ namespace MidwinterConvention.CLI
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int sortindex
+            public byte sortindex
             {
                 get
                 {
@@ -374,11 +407,11 @@ namespace MidwinterConvention.CLI
         public partial class itemsItemPlayingtime
         {
 
-            private int valueField;
+            private byte valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int value
+            public byte value
             {
                 get
                 {
@@ -404,7 +437,7 @@ namespace MidwinterConvention.CLI
 
             private string titleField;
 
-            private int totalvotesField;
+            private ushort totalvotesField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlElementAttribute("results")]
@@ -450,7 +483,7 @@ namespace MidwinterConvention.CLI
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int totalvotes
+            public ushort totalvotes
             {
                 get
                 {
@@ -512,9 +545,9 @@ namespace MidwinterConvention.CLI
 
             private string valueField;
 
-            private int numvotesField;
+            private ushort numvotesField;
 
-            private int levelField;
+            private ushort levelField;
 
             private bool levelFieldSpecified;
 
@@ -534,7 +567,7 @@ namespace MidwinterConvention.CLI
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int numvotes
+            public ushort numvotes
             {
                 get
                 {
@@ -548,7 +581,7 @@ namespace MidwinterConvention.CLI
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int level
+            public ushort level
             {
                 get
                 {
@@ -584,7 +617,7 @@ namespace MidwinterConvention.CLI
 
             private itemsItemStatisticsRatings ratingsField;
 
-            private int pageField;
+            private byte pageField;
 
             /// <remarks/>
             public itemsItemStatisticsRatings ratings
@@ -601,7 +634,7 @@ namespace MidwinterConvention.CLI
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int page
+            public byte page
             {
                 get
                 {
@@ -825,11 +858,11 @@ namespace MidwinterConvention.CLI
         public partial class itemsItemStatisticsRatingsUsersrated
         {
 
-            private string valueField;
+            private ushort valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public string value
+            public ushort value
             {
                 get
                 {
@@ -899,7 +932,7 @@ namespace MidwinterConvention.CLI
 
             private string typeField;
 
-            private string idField;
+            private ushort idField;
 
             private string nameField;
 
@@ -907,7 +940,7 @@ namespace MidwinterConvention.CLI
 
             private string valueField;
 
-            private decimal bayesaverageField;
+            private string bayesaverageField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -925,7 +958,7 @@ namespace MidwinterConvention.CLI
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public string id
+            public ushort id
             {
                 get
                 {
@@ -981,7 +1014,7 @@ namespace MidwinterConvention.CLI
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public decimal bayesaverage
+            public string bayesaverage
             {
                 get
                 {
@@ -1025,11 +1058,11 @@ namespace MidwinterConvention.CLI
         public partial class itemsItemStatisticsRatingsMedian
         {
 
-            private int valueField;
+            private byte valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int value
+            public byte value
             {
                 get
                 {
@@ -1049,11 +1082,11 @@ namespace MidwinterConvention.CLI
         public partial class itemsItemStatisticsRatingsOwned
         {
 
-            private string valueField;
+            private uint valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public string value
+            public uint value
             {
                 get
                 {
@@ -1073,11 +1106,11 @@ namespace MidwinterConvention.CLI
         public partial class itemsItemStatisticsRatingsTrading
         {
 
-            private int valueField;
+            private ushort valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int value
+            public ushort value
             {
                 get
                 {
@@ -1097,11 +1130,11 @@ namespace MidwinterConvention.CLI
         public partial class itemsItemStatisticsRatingsWanting
         {
 
-            private int valueField;
+            private ushort valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int value
+            public ushort value
             {
                 get
                 {
@@ -1121,11 +1154,11 @@ namespace MidwinterConvention.CLI
         public partial class itemsItemStatisticsRatingsWishing
         {
 
-            private string valueField;
+            private ushort valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public string value
+            public ushort value
             {
                 get
                 {
@@ -1145,11 +1178,11 @@ namespace MidwinterConvention.CLI
         public partial class itemsItemStatisticsRatingsNumcomments
         {
 
-            private int valueField;
+            private ushort valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int value
+            public ushort value
             {
                 get
                 {
@@ -1169,11 +1202,11 @@ namespace MidwinterConvention.CLI
         public partial class itemsItemStatisticsRatingsNumweights
         {
 
-            private int valueField;
+            private ushort valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int value
+            public ushort value
             {
                 get
                 {
@@ -1217,11 +1250,11 @@ namespace MidwinterConvention.CLI
         public partial class itemsItemYearpublished
         {
 
-            private string valueField;
+            private ushort valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public string value
+            public ushort value
             {
                 get
                 {
@@ -1282,7 +1315,6 @@ namespace MidwinterConvention.CLI
             /// <remarks/>
             yearpublished,
         }
-
 
 
     }
