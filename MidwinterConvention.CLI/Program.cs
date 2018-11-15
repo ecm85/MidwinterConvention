@@ -10,7 +10,7 @@ namespace MidwinterConvention.CLI
             var gameService = new GameService();
             var gameInfos = gameService.GetAllGames().ToList();
 
-            Console.WriteLine("Free To Play Games");
+            Console.WriteLine("Play to Win Games");
             Console.WriteLine("--------------------------------------------------");
             var freeToPlayItems = gameInfos
                 .Where(gameInfo => gameInfo.MidwinterItem.is_play_to_win == 1)
@@ -22,7 +22,7 @@ namespace MidwinterConvention.CLI
             }
 
             Console.WriteLine();
-            Console.WriteLine("Non-Free To Play Games");
+            Console.WriteLine("Non-Play to Win Games");
             Console.WriteLine("--------------------------------------------------");
             var nonFreeToPlayItems = gameInfos
                 .Except(freeToPlayItems)
