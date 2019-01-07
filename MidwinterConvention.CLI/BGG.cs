@@ -57,7 +57,7 @@
 
             private string typeField;
 
-            private uint idField;
+            private ulong idField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlElementAttribute("description", typeof(string))]
@@ -118,7 +118,7 @@
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public uint id
+            public ulong id
             {
                 get
                 {
@@ -140,7 +140,7 @@
 
             private string typeField;
 
-            private uint idField;
+            private ulong idField;
 
             private string valueField;
 
@@ -164,7 +164,7 @@
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public uint id
+            public ulong id
             {
                 get
                 {
@@ -432,7 +432,7 @@
 
             private string titleField;
 
-            private ushort totalvotesField;
+            private uint totalvotesField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlElementAttribute("results")]
@@ -478,7 +478,7 @@
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public ushort totalvotes
+            public uint totalvotes
             {
                 get
                 {
@@ -540,9 +540,9 @@
 
             private string valueField;
 
-            private ushort numvotesField;
+            private uint numvotesField;
 
-            private ushort levelField;
+            private uint levelField;
 
             private bool levelFieldSpecified;
 
@@ -562,7 +562,7 @@
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public ushort numvotes
+            public uint numvotes
             {
                 get
                 {
@@ -576,7 +576,7 @@
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public ushort level
+            public uint level
             {
                 get
                 {
@@ -853,11 +853,11 @@
         public partial class itemsItemStatisticsRatingsUsersrated
         {
 
-            private ushort valueField;
+            private uint valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public ushort value
+            public uint value
             {
                 get
                 {
@@ -927,7 +927,7 @@
 
             private string typeField;
 
-            private ushort idField;
+            private uint idField;
 
             private string nameField;
 
@@ -953,7 +953,7 @@
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public ushort id
+            public uint id
             {
                 get
                 {
@@ -1077,6 +1077,30 @@
         public partial class itemsItemStatisticsRatingsOwned
         {
 
+            private ulong valueField;
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute()]
+            public ulong value
+            {
+                get
+                {
+                    return this.valueField;
+                }
+                set
+                {
+                    this.valueField = value;
+                }
+            }
+        }
+
+        /// <remarks/>
+        [System.SerializableAttribute()]
+        [System.ComponentModel.DesignerCategoryAttribute("code")]
+        [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+        public partial class itemsItemStatisticsRatingsTrading
+        {
+
             private uint valueField;
 
             /// <remarks/>
@@ -1098,38 +1122,14 @@
         [System.SerializableAttribute()]
         [System.ComponentModel.DesignerCategoryAttribute("code")]
         [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-        public partial class itemsItemStatisticsRatingsTrading
-        {
-
-            private ushort valueField;
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            public ushort value
-            {
-                get
-                {
-                    return this.valueField;
-                }
-                set
-                {
-                    this.valueField = value;
-                }
-            }
-        }
-
-        /// <remarks/>
-        [System.SerializableAttribute()]
-        [System.ComponentModel.DesignerCategoryAttribute("code")]
-        [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
         public partial class itemsItemStatisticsRatingsWanting
         {
 
-            private ushort valueField;
+            private uint valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public ushort value
+            public uint value
             {
                 get
                 {
@@ -1149,11 +1149,11 @@
         public partial class itemsItemStatisticsRatingsWishing
         {
 
-            private ushort valueField;
+            private uint valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public ushort value
+            public uint value
             {
                 get
                 {
@@ -1173,11 +1173,11 @@
         public partial class itemsItemStatisticsRatingsNumcomments
         {
 
-            private ushort valueField;
+            private uint valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public ushort value
+            public uint value
             {
                 get
                 {
@@ -1197,11 +1197,11 @@
         public partial class itemsItemStatisticsRatingsNumweights
         {
 
-            private ushort valueField;
+            private uint valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public ushort value
+            public uint value
             {
                 get
                 {
@@ -1245,11 +1245,11 @@
         public partial class itemsItemYearpublished
         {
 
-            private ushort valueField;
+            private uint valueField;
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
-            public ushort value
+            public uint value
             {
                 get
                 {

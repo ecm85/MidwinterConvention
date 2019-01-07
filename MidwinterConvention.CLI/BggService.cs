@@ -9,7 +9,7 @@ namespace MidwinterConvention.CLI
 {
     public class BggService
     {
-        public IDictionary<uint, BGG.itemsItem> GetBggItems(IEnumerable<int> bggIds)
+        public IDictionary<ulong, BGG.itemsItem> GetBggItems(IEnumerable<int> bggIds)
         {
             var bggIdsParameter = string.Join(",", bggIds);
             using (var client = new HttpClient())

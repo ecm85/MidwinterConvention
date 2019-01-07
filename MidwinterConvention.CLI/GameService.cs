@@ -17,7 +17,7 @@ namespace MidwinterConvention.CLI
                 .Select(item => new GameInfo
                 {
                     MidwinterItem = item,
-                    BggItem = item.bgg_id == null ? null : allBggItems[(uint)item.bgg_id]
+                    BggItem = item.bgg_id == null || item.bgg_id == 0 ? null : allBggItems[(uint)item.bgg_id]
                 })
                 .ToList();
         }
