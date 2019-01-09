@@ -1,0 +1,23 @@
+﻿@model MidwinterModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <h2>Play to Win Games</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>BGG GeekRating</th>
+            <th>BGG AverageRating</th>
+        </tr>
+        @foreach (var game in Model.PlayToWinGames)
+        {
+            <tr>
+                <td>@game.MidwinterItem.name</td>
+                <td>@(game.BggRating?.ToString() ?? "Missing BGG ID!")</td>
+                <td>@(game.Rating?.ToString() ?? "Missing BGG ID!")</td>
+            </tr>
+        }
+        </table>
+    </div>

@@ -14,7 +14,7 @@ namespace MidwinterConvention.CLI
             Console.WriteLine("--------------------------------------------------");
             var freeToPlayItems = gameInfos
                 .Where(gameInfo => gameInfo.MidwinterItem.is_play_to_win == 1)
-                .OrderByDescending(gameInfo => gameInfo.AverageRating)
+                .OrderByDescending(gameInfo => gameInfo.BggRating)
                 .ToList();
             foreach (var freeToPlayItem in freeToPlayItems)
             {
@@ -26,7 +26,7 @@ namespace MidwinterConvention.CLI
             Console.WriteLine("--------------------------------------------------");
             var nonFreeToPlayItems = gameInfos
                 .Except(freeToPlayItems)
-                .OrderByDescending(gameInfo => gameInfo.AverageRating);
+                .OrderByDescending(gameInfo => gameInfo.BggRating);
             foreach (var nonFreeToPlayItem in nonFreeToPlayItems)
             {
                 PrintGameInfo(nonFreeToPlayItem);
@@ -35,13 +35,13 @@ namespace MidwinterConvention.CLI
 
         private static void PrintGameInfo(GameInfo gameInfo)
         {
-            if (gameInfo.AverageRating == null)
+            if (gameInfo.BggRating == null)
             {
                 Console.WriteLine(gameInfo.MidwinterItem.name + " - NO BGG ID!!!");
             }
             else
             {
-                Console.WriteLine(gameInfo.MidwinterItem.name + " - " + gameInfo.AverageRating);
+                Console.WriteLine(gameInfo.MidwinterItem.name + " - " + gameInfo.BggRating);
             }
         }
     }
