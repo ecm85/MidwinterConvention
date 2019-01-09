@@ -3,37 +3,61 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row">
-    <h2>Play to Win Games</h2>
-    <table class="table table-striped">
-        <tr>
-            <th>Name</th>
-            <th>BGG GeekRating</th>
-            <th>BGG AverageRating</th>
-        </tr>
-        @foreach (var game in Model.PlayToWinGames)
-        {
-            <tr>
-                <td>@game.MidwinterItem.name</td>
-                <td>@(game.BggRating?.ToString() ?? "Missing BGG ID!")</td>
-                <td>@(game.Rating?.ToString() ?? "Missing BGG ID!")</td>
-            </tr>
-        }
-    </table>
-    <h2>Non-Play to Win Games</h2>
-    <table class="table table-striped">
-        <tr>
-            <th>Name</th>
-            <th>BGG GeekRating</th>
-            <th>BGG AverageRating</th>
-        </tr>
-        @foreach (var game in Model.NonPlayToWinGames)
-        {
-            <tr>
-                <td>@game.MidwinterItem.name</td>
-                <td>@(game.BggRating?.ToString() ?? "Missing BGG ID!")</td>
-                <td>@(game.Rating?.ToString() ?? "Missing BGG ID!")</td>
-            </tr>
-        }
-    </table>
+<div class="panel-group" id="accordion" role="tablist">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    Play to Win Games
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel">
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Name</th>
+                        <th>BGG GeekRating</th>
+                        <th>BGG AverageRating</th>
+                    </tr>
+                    @foreach (var game in Model.PlayToWinGames)
+                    {
+                        <tr>
+                            <td>@game.MidwinterItem.name</td>
+                            <td>@(game.BggRating?.ToString() ?? "Missing BGG ID!")</td>
+                            <td>@(game.Rating?.ToString() ?? "Missing BGG ID!")</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                    Non-Play to Win Games
+                </a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel">
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Name</th>
+                        <th>BGG GeekRating</th>
+                        <th>BGG AverageRating</th>
+                    </tr>
+                    @foreach (var game in Model.NonPlayToWinGames)
+                    {
+                        <tr>
+                            <td>@game.MidwinterItem.name</td>
+                            <td>@(game.BggRating?.ToString() ?? "Missing BGG ID!")</td>
+                            <td>@(game.Rating?.ToString() ?? "Missing BGG ID!")</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
