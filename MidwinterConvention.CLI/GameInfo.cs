@@ -15,7 +15,7 @@ namespace MidwinterConvention.CLI
                     return null;
                 var indexOfStatistics = BggItem.ItemsElementName.ToList().IndexOf(BGG.ItemsChoiceType.statistics);
                 var statistics = (BGG.itemsItemStatistics)BggItem.Items[indexOfStatistics];
-                return statistics.ratings.average.value;
+                return statistics.ratings.bayesaverage.value;
             }
         }
     }
