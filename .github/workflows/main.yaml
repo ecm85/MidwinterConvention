@@ -27,6 +27,6 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           dotnet build -c Release -nologo
-          cd ./MidwinterConvention.Pl
+          cd ./MidwinterConvention.PL
           dotnet lambda package -o lambda.zip -c Release --no-build
           aws lambda update-function-code --function-name midwinter-convention --zip-file fileb://lambda.zip
