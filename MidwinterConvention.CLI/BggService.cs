@@ -11,7 +11,7 @@ namespace MidwinterConvention.CLI
     {
         public IDictionary<ulong, BGG.itemsItem> GetBggItems(IEnumerable<int> bggIds)
         {
-            var bggIdsParameter = string.Join(",", bggIds);
+            var bggIdsParameter = string.Join(",", bggIds.Distinct());
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
